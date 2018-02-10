@@ -9,7 +9,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -99,4 +98,7 @@ ENV/
 
 # mypy
 .mypy_cache/
-settings.py
+
+# HowloserUare
+.HowloserUare
+HowloserUare/HowloserUare/settings.py

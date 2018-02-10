@@ -103,3 +103,5 @@ ENV/
 settings.py
 
 tests.py
+
+logs/*.log

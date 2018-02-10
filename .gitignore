@@ -100,7 +100,6 @@ ENV/
 .mypy_cache/
 
 # HowloserUare
-.HowloserUare
-HowloserUare/HowloserUare/settings.py
+settings.py
 
 tests.py

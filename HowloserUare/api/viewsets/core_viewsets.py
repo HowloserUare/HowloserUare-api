@@ -21,6 +21,9 @@ class CoreViewSet(viewsets.ViewSet):
     authentication_classes = (SessionAuthentication, TokenAuthentication)
     permission_classes = (IsAuthenticated, )
 
+    def return_error(self, msg):
+        return Response({'status': False, 'msg': msg})
+
     @list_route(methods=['post', ])
     def signup(self, request):
         try:
@@ -42,11 +45,11 @@ class CoreViewSet(viewsets.ViewSet):
             password = request.data.get('password')
             user_obj = User.objects.filter(username=username).first()
             if not user_obj:
-                raise ValueError('User not exists.')
+                return self.return_error('User not exists.')
             if not password:
-                raise ValueError('password may not be blank.')
+                return self.return_error('password may not be blank.')
             if not user_obj.password == encrypt_string(password):
-                raise ValueError('incurrect password.')
+                return self.return_error('incurrect password.')
             # write to session
             request.session['userid'] = user_obj.id
             return Response({'status': True})

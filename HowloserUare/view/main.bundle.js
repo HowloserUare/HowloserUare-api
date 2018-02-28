@@ -17,6 +17,48 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 
 /***/ }),
 
+/***/ "../../../../../src/app/app-routing.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRouter; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard/dashboard.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var routes = [
+    { 'path': '', 'component': __WEBPACK_IMPORTED_MODULE_3__dashboard_dashboard_component__["a" /* DashboardComponent */] },
+    { 'path': 'login', 'component': __WEBPACK_IMPORTED_MODULE_2__login_login_component__["a" /* LoginComponent */] }
+];
+var config = {
+    'useHash': true,
+};
+var AppRouter = /** @class */ (function () {
+    function AppRouter() {
+    }
+    AppRouter = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
+            imports: [__WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule */].forRoot(routes, config)],
+            exports: [__WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule */]]
+        })
+    ], AppRouter);
+    return AppRouter;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38,7 +80,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-login></app-login>\n"
+module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -60,7 +102,7 @@ var AppComponent = /** @class */ (function () {
         this.title = 'app';
     }
     AppComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
@@ -78,13 +120,15 @@ var AppComponent = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login_component__ = __webpack_require__("../../../../../src/app/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routing__ = __webpack_require__("../../../../../src/app/app-routing.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -98,23 +142,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["E" /* NgModule */])({
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_3__dashboard_dashboard_component__["a" /* DashboardComponent */],
-                __WEBPACK_IMPORTED_MODULE_4__login_login_component__["a" /* LoginComponent */]
+                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard_component__["a" /* DashboardComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__login_login_component__["a" /* LoginComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_6__angular_common_http__["b" /* HttpClientModule */]
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_6__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_7__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_8__app_routing__["a" /* AppRouter */]
             ],
-            providers: [],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
+            providers: [
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' }
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -145,7 +194,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "dashboard working\n"
 
 /***/ }),
 
@@ -171,7 +220,7 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.ngOnInit = function () {
     };
     DashboardComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-dashboard',
             template: __webpack_require__("../../../../../src/app/dashboard/dashboard.component.html"),
             styles: [__webpack_require__("../../../../../src/app/dashboard/dashboard.component.css")]
@@ -206,7 +255,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n\n  <!-- start: Meta -->\n  <meta charset=\"utf-8\">\n  <title>Bootstrap Metro Dashboard by Dennis Ji for ARM demo</title>\n  <meta name=\"description\" content=\"Bootstrap Metro Dashboard\">\n  <meta name=\"author\" content=\"Dennis Ji\">\n  <meta name=\"keyword\" content=\"Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina\">\n  <!-- end: Meta -->\n\n  <!-- start: Mobile Specific -->\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <!-- end: Mobile Specific -->\n\n  <!-- start: CSS -->\n  <link id=\"bootstrap-style\" href=\"assets/css/bootstrap.min.css\" rel=\"stylesheet\">\n  <link href=\"assets/css/bootstrap-responsive.min.css\" rel=\"stylesheet\">\n  <link id=\"base-style\" href=\"assets/css/style.css\" rel=\"stylesheet\">\n  <link id=\"base-style-responsive\" href=\"assets/css/style-responsive.css\" rel=\"stylesheet\">\n  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'\n    rel='stylesheet' type='text/css'>\n  <!-- end: CSS -->\n\n\n  <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->\n  <!--[if lt IE 9]>\n\t  \t<script src=\"http://html5shim.googlecode.com/svn/trunk/html5.js\"></script>\n\t\t<link id=\"ie-style\" href=\"assets/css/ie.css\" rel=\"stylesheet\">\n\t<![endif]-->\n\n  <!--[if IE 9]>\n\t\t<link id=\"ie9style\" href=\"assets/css/ie9.css\" rel=\"stylesheet\">\n\t<![endif]-->\n\n  <!-- start: Favicon -->\n  <link rel=\"shortcut icon\" href=\"assets/img/favicon.ico\">\n  <!-- end: Favicon -->\n\n  <style type=\"text/css\">\n    body {\n      background: url(assets/img/bg-login.jpg) !important;\n    }\n  </style>\n\n\n\n</head>\n\n<body>\n  <div class=\"container-fluid-full\">\n    <div class=\"row-fluid\">\n\n      <div class=\"row-fluid\">\n        <div class=\"login-box\">\n          <h2>Login</h2>\n          <form class=\"form-horizontal\">\n              <div class=\"input-prepend\" title=\"Username\">\n                <span class=\"add-on\">\n                  <i class=\"halflings-icon user\"></i>\n                </span>\n                <input class=\"input-large span10\" [(ngModel)]=\"username\" name=\"username\" type=\"text\" placeholder=\"type username\" />\n              </div>\n              <div class=\"clearfix\"></div>\n\n              <div class=\"input-prepend\" title=\"Password\">\n                <span class=\"add-on\">\n                  <i class=\"halflings-icon lock\"></i>\n                </span>\n                <input class=\"input-large span10\" [(ngModel)]=\"password\" name=\"password\" type=\"password\" placeholder=\"type password\" />\n              </div>\n              <div class=\"clearfix\"></div>\n\n              <div class=\"button-login\">\n                <button type=\"submit\" class=\"btn btn-primary\" (click)='Login(username, password)'>Login</button>\n              </div>\n          </form>\n          <hr>\n          <h3 class=\"text-error\" ><span *ngIf=\"error\" class=\"text-error\">{{error}}</span> &nbsp;</h3>\n        </div>\n        <!--/span-->\n      </div>\n      <!--/row-->\n\n\n    </div>\n    <!--/.fluid-container-->\n\n  </div>\n  <!--/fluid-row-->\n\n  <script src=\"assets/js/jquery-1.9.1.min.js\"></script>\n  <script src=\"assets/js/jquery-migrate-1.0.0.min.js\"></script>\n\n  <script src=\"assets/js/jquery-ui-1.10.0.custom.min.js\"></script>\n\n  <script src=\"assets/js/jquery.ui.touch-punch.js\"></script>\n\n  <script src=\"assets/js/modernizr.js\"></script>\n\n  <script src=\"assets/js/bootstrap.min.js\"></script>\n\n  <script src=\"assets/js/jquery.cookie.js\"></script>\n\n  <script src='assets/js/fullcalendar.min.js'></script>\n\n  <script src='assets/js/jquery.dataTables.min.js'></script>\n\n  <script src=\"assets/js/excanvas.js\"></script>\n  <script src=\"assets/js/jquery.flot.js\"></script>\n  <script src=\"assets/js/jquery.flot.pie.js\"></script>\n  <script src=\"assets/js/jquery.flot.stack.js\"></script>\n  <script src=\"assets/js/jquery.flot.resize.min.js\"></script>\n\n  <script src=\"assets/js/jquery.chosen.min.js\"></script>\n\n  <script src=\"assets/js/jquery.uniform.min.js\"></script>\n\n  <script src=\"assets/js/jquery.cleditor.min.js\"></script>\n\n  <script src=\"assets/js/jquery.noty.js\"></script>\n\n  <script src=\"assets/js/jquery.elfinder.min.js\"></script>\n\n  <script src=\"assets/js/jquery.raty.min.js\"></script>\n\n  <script src=\"assets/js/jquery.iphone.toggle.js\"></script>\n\n  <script src=\"assets/js/jquery.uploadify-3.1.min.js\"></script>\n\n  <script src=\"assets/js/jquery.gritter.min.js\"></script>\n\n  <script src=\"assets/js/jquery.imagesloaded.js\"></script>\n\n  <script src=\"assets/js/jquery.masonry.min.js\"></script>\n\n  <script src=\"assets/js/jquery.knob.modified.js\"></script>\n\n  <script src=\"assets/js/jquery.sparkline.min.js\"></script>\n\n  <script src=\"assets/js/counter.js\"></script>\n\n  <script src=\"assets/js/retina.js\"></script>\n\n  <script src=\"assets/js/custom.js\"></script>\n\n</body>\n\n</html>\n"
+module.exports = "<div class=\"container-fluid-full\" style=\"background: url(/assets/img/bg-login.jpg)\">\n  <div class=\"row-fluid\">\n    <div class=\"login-box\">\n      <h2>Login</h2>\n      <form class=\"form-horizontal\">\n        <div class=\"input-prepend\" title=\"Username\">\n          <span class=\"add-on\">\n            <i class=\"halflings-icon user\"></i>\n          </span>\n          <input class=\"input-large span10\" [(ngModel)]=\"username\" name=\"username\" type=\"text\" placeholder=\"type username\" />\n        </div>\n        <div class=\"clearfix\"></div>\n\n        <div class=\"input-prepend\" title=\"Password\">\n          <span class=\"add-on\">\n            <i class=\"halflings-icon lock\"></i>\n          </span>\n          <input class=\"input-large span10\" [(ngModel)]=\"password\" name=\"password\" type=\"password\" placeholder=\"type password\" />\n        </div>\n        <div class=\"clearfix\"></div>\n\n        <div class=\"button-login\">\n          <button type=\"submit\" class=\"btn btn-primary\" (click)='Login(username, password)'>Login</button>\n        </div>\n      </form>\n      <hr>\n      <h3 class=\"text-error\">\n        <span *ngIf=\"error\" class=\"text-error\">{{error}}</span> &nbsp;</h3>\n    </div>\n    <!--/span-->\n  </div>\n  <!--/row-->\n</div>\n<!--/.fluid-container-->\n"
 
 /***/ }),
 
@@ -231,8 +280,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(loginservice) {
         this.loginservice = loginservice;
+        console.log('11');
     }
     LoginComponent.prototype.ngOnInit = function () {
+        console.log('1');
     };
     LoginComponent.prototype.Login = function (username, password) {
         var _this = this;
@@ -242,7 +293,7 @@ var LoginComponent = /** @class */ (function () {
             password: this.password
         }).subscribe(function (res) {
             if (res && res.status === true) {
-                console.log('Login successed');
+                console.log(res);
             }
             else {
                 _this.error = res.msg;
@@ -252,7 +303,7 @@ var LoginComponent = /** @class */ (function () {
         });
     };
     LoginComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-login',
             template: __webpack_require__("../../../../../src/app/login/login.component.html"),
             styles: [__webpack_require__("../../../../../src/app/login/login.component.css")],
@@ -310,7 +361,7 @@ var LoginService = /** @class */ (function () {
         });
     };
     LoginService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Injectable */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], LoginService);
     return LoginService;
@@ -399,7 +450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_7" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });

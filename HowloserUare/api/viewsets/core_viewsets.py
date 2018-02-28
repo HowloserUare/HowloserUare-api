@@ -12,19 +12,19 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authentication import SessionAuthentication
 
 from api.serializers import UserSerializer, User
-from core.utils import encrypt_string
+from core.utils import encrypt_string, UserPermission
 
 logger = logging.getLogger('api.core')
 
 
 class CoreViewSet(viewsets.ViewSet):
     authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, UserPermission)
 
     def return_error(self, msg):
         return Response({'status': False, 'msg': msg})
 
-    @list_route(methods=['post', ])
+    @list_route(methods=['post', ], permission_classes=[])
     def signup(self, request):
         try:
             serializer = UserSerializer(data=request.data)
@@ -38,7 +38,7 @@ class CoreViewSet(viewsets.ViewSet):
             return Response(
                 {'status': False, 'msg': str(e)}, status=500)
 
-    @list_route(methods=['post', ])
+    @list_route(methods=['post', ], permission_classes=[])
     def login(self, request):
         try:
             username = request.data.get('username')
@@ -57,3 +57,7 @@ class CoreViewSet(viewsets.ViewSet):
             logger.error(str(e))
             return Response(
                 {'status': False, 'msg': str(e)}, status=500)
+
+    @list_route(methods=['get',])
+    def status(self, request):
+        return Response({'status': True}, status=200)

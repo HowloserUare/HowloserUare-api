@@ -3,7 +3,7 @@ from rest_framework.validators import UniqueValidator
 from core.models import User
 
 
-class UserSerializer(serializers.Serializer):
+class UserSerializer(serializers.ModelSerializer):
     username = serializers.CharField(
         max_length=16,
         min_length=5,
@@ -12,4 +12,5 @@ class UserSerializer(serializers.Serializer):
         max_length=64, min_length=6)
 
     class Meta:
+        model = User
         exclude = ('id',)

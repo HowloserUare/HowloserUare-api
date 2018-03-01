@@ -28,11 +28,15 @@ class CoreViewSet(viewsets.ViewSet):
     def signup(self, request):
         try:
             serializer = UserSerializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
+            is_valid = serializer.is_valid(raise_exception=False)
+            if not is_valid:
+                filed = list(serializer.errors)[0]
+                errors = serializer.errors[filed][0]
+                return self.return_error("{}: {}".format(filed, errors))
             # encrypt password
             serializer.save(
                 password=encrypt_string(request.data.get('password')))
-            return Response(request.data.get('username'))
+            return Response({'status':True})
         except Exception as e:
             logger.error(str(e))
             return Response(
@@ -61,3 +65,14 @@ class CoreViewSet(viewsets.ViewSet):
     @list_route(methods=['get',])
     def status(self, request):
         return Response({'status': True}, status=200)
+
+    @list_route(methods=['get',])
+    def logout(self, request):
+        try:
+            # destory session
+            del request.session['userid']
+            return Response({'status': True})
+        except Exception as e:
+            logger.error(str(e))
+            return Response(
+                {'status': False, 'msg': str(e)}, status=500)

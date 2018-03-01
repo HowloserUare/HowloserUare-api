@@ -105,4 +105,4 @@ settings.py
 tests.py
 
 logs/*.log
-.HowloserUare/view/*
+view/*

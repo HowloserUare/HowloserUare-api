@@ -19,7 +19,7 @@ logger = logging.getLogger('api.core')
 
 class CoreViewSet(viewsets.ViewSet):
     authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = (IsAuthenticated, UserPermission)
+    permission_classes = (UserPermission,)
 
     def return_error(self, msg):
         return Response({'status': False, 'msg': msg})

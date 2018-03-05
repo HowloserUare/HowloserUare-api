@@ -5,11 +5,7 @@ import logging
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-# from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import list_route
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.authentication import SessionAuthentication
 
 from api.serializers import UserSerializer, User
 from core.utils import encrypt_string, UserPermission
@@ -18,7 +14,6 @@ logger = logging.getLogger('api.core')
 
 
 class CoreViewSet(viewsets.ViewSet):
-    authentication_classes = (SessionAuthentication, TokenAuthentication)
     permission_classes = (UserPermission,)
 
     def return_error(self, msg):

@@ -545,11 +545,9 @@ var NavComponent = /** @class */ (function () {
     NavComponent.prototype.ngOnInit = function () {
     };
     NavComponent.prototype.logout = function () {
-        console.log('1');
         if (!confirm('are you sure?')) {
             return;
         }
-        console.log('2');
         this.service.logout().subscribe(function (res) {
             if (res.status === true) {
                 alert('logout successed.');
@@ -597,7 +595,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/components/sidebar/sidebar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  sidebar works!\n</p>\n"
+module.exports = "<div id=\"sidebar-left\" class=\"span2\">\n  <div class=\"nav-collapse sidebar-nav\">\n    <ul class=\"nav nav-tabs nav-stacked main-menu\">\n      <li>\n        <a href=\"index.html\">\n          <i class=\"icon-bar-chart\"></i>\n          <span class=\"hidden-tablet\"> Dashboard</span>\n        </a>\n      </li>\n      <li>\n        <a class=\"dropmenu\" href=\"#\">\n          <i class=\"icon-folder-close-alt\"></i>\n          <span class=\"hidden-tablet\"> Dropdown</span>\n          <span class=\"label label-important\"> 3 </span>\n        </a>\n        <ul>\n          <li>\n            <a class=\"submenu\" href=\"submenu.html\">\n              <i class=\"icon-file-alt\"></i>\n              <span class=\"hidden-tablet\"> Sub Menu 1</span>\n            </a>\n          </li>\n          <li>\n            <a class=\"submenu\" href=\"submenu2.html\">\n              <i class=\"icon-file-alt\"></i>\n              <span class=\"hidden-tablet\"> Sub Menu 2</span>\n            </a>\n          </li>\n          <li>\n            <a class=\"submenu\" href=\"submenu3.html\">\n              <i class=\"icon-file-alt\"></i>\n              <span class=\"hidden-tablet\"> Sub Menu 3</span>\n            </a>\n          </li>\n        </ul>\n      </li>\n    </ul>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -658,7 +656,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav></app-nav>\n\n<app-sidebar></app-sidebar>\n\n<button type=\"button\" class=\"btn btn-sm btn-primary\" (click)=\"logout()\">Logout</button>\n"
+module.exports = "\n\n\n\n\n    <!-- start: Header -->\n    <app-nav></app-nav>\n    <!-- start: Header -->\n    \n    <div class=\"container-fluid-full\">\n        <div class=\"row-fluid\" style=\"background-color: #1C2B36;\">\n            \n            <!-- start: Main Menu -->\n            <app-sidebar></app-sidebar>\n            <!-- end: Main Menu -->\n\n            <noscript>\n                &lt;div class=\"alert alert-block span10\"&gt; &lt;h4 class=\"alert-heading\"&gt;Warning!&lt;/h4&gt; &lt;p&gt;You need to have\n                &lt;a href=\"http://en.wikipedia.org/wiki/JavaScript\" target=\"_blank\"&gt;JavaScript&lt;/a&gt; enabled to use\n                this site.&lt;/p&gt; &lt;/div&gt;\n            </noscript>\n\n            <!-- start: Content -->\n            <div id=\"content\" class=\"span10\" style=\"min-height: 635px;\">\n\n\n                <ul class=\"breadcrumb\">\n                    <li>\n                        <i class=\"icon-home\"></i>\n                        <a href=\"index.html\">Home</a>\n                        <i class=\"icon-angle-right\"></i>\n                    </li>\n                    <li>\n                        <a href=\"#\">Typography</a>\n                    </li>\n                </ul>\n\n                <app-content></app-content>\n\n            </div>\n            <!--/.fluid-container-->\n\n            <!-- end: Content -->\n        </div>\n        <!--/#content.span10-->\n    </div>\n    <!--/fluid-row-->\n\n    <div class=\"modal hide fade\" id=\"myModal\">\n        <div class=\"modal-header\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">×</button>\n            <h3>Settings</h3>\n        </div>\n        <div class=\"modal-body\">\n            <p>Here settings can be configured...</p>\n        </div>\n        <div class=\"modal-footer\">\n            <a href=\"#\" class=\"btn\" data-dismiss=\"modal\">Close</a>\n            <a href=\"#\" class=\"btn btn-primary\">Save changes</a>\n        </div>\n    </div>\n\n    <div class=\"clearfix\"></div>\n\n    <footer>\n\n        <p>\n            <span style=\"text-align:left;float:left\">© 2013\n                <a href=\"http://jiji262.github.io/Bootstrap_Metro_Dashboard/\" alt=\"Bootstrap_Metro_Dashboard\">Bootstrap Metro Dashboard</a>\n            </span>\n\n        </p>\n\n    </footer>\n\n"
 
 /***/ }),
 
@@ -719,7 +717,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var http_1 = __webpack_require__("../../../common/esm5/http.js");
-var cookies_1 = __webpack_require__("../../../../../src/app/utils/cookies.ts");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
 var LoginService = /** @class */ (function () {
     function LoginService(http, router) {
@@ -730,7 +727,6 @@ var LoginService = /** @class */ (function () {
         return this.http.post('/api/core/login/', obj, {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'application/json',
-                'X-CSRFToken': cookies_1.getCookie('csrftoken')
             })
         });
     };
@@ -738,22 +734,17 @@ var LoginService = /** @class */ (function () {
         return this.http.post('/api/core/signup/', obj, {
             headers: new http_1.HttpHeaders({
                 'Content-Type': 'application/json',
-                'X-CSRFToken': cookies_1.getCookie('csrftoken')
             })
         });
     };
     LoginService.prototype.status = function () {
         return this.http.get('/api/core/status/', {
-            headers: new http_1.HttpHeaders({
-                'X-CSRFToken': cookies_1.getCookie('csrftoken')
-            }),
+            headers: new http_1.HttpHeaders({}),
         });
     };
     LoginService.prototype.logout = function () {
         return this.http.get('/api/core/logout/', {
-            headers: new http_1.HttpHeaders({
-                'X-CSRFToken': cookies_1.getCookie('csrftoken')
-            }),
+            headers: new http_1.HttpHeaders({}),
         });
     };
     LoginService.prototype.checkLoginStatus = function () {
@@ -774,34 +765,6 @@ var LoginService = /** @class */ (function () {
     return LoginService;
 }());
 exports.LoginService = LoginService;
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/utils/cookies.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function getCookie(name) {
-    var arr;
-    var reg = new RegExp('(^|  )' + name + '=([^;]*)(;|$)');
-    if (arr = document.cookie.match(reg)) {
-        return arr[2];
-    }
-    else {
-        return null;
-    }
-}
-exports.getCookie = getCookie;
-function setCookie(name, value) {
-    var Days = 30;
-    var exp = new Date();
-    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-    document.cookie = name + '=' + value;
-}
-exports.setCookie = setCookie;
 
 
 /***/ }),

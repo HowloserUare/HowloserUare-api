@@ -2,7 +2,8 @@
 Core viewsets
 """
 import logging
-from django.views.decorators.csrf import csrf_exempt
+import traceback
+
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import list_route
@@ -33,7 +34,7 @@ class CoreViewSet(viewsets.ViewSet):
                 password=encrypt_string(request.data.get('password')))
             return Response({'status':True})
         except Exception as e:
-            logger.error(str(e))
+            logger.error(traceback.format_exc())
             return Response(
                 {'status': False, 'msg': str(e)}, status=500)
 
@@ -53,7 +54,7 @@ class CoreViewSet(viewsets.ViewSet):
             request.session['userid'] = user_obj.id
             return Response({'status': True})
         except Exception as e:
-            logger.error(str(e))
+            logger.error(traceback.format_exc())
             return Response(
                 {'status': False, 'msg': str(e)}, status=500)
 
@@ -68,6 +69,6 @@ class CoreViewSet(viewsets.ViewSet):
             del request.session['userid']
             return Response({'status': True})
         except Exception as e:
-            logger.error(str(e))
+            logger.error(traceback.format_exc())
             return Response(
                 {'status': False, 'msg': str(e)}, status=500)

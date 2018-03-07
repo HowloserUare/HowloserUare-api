@@ -46,6 +46,7 @@ class BaseFilter(object):
             self.q_obj.connector = 'and'
         return self.queryset.filter(self.q_obj)
 
+    @property
     def __valid_query_params(self, ):
         """
         Judgment the params is valid or not
@@ -58,12 +59,14 @@ class BaseFilter(object):
         else:
             return False
 
-    def get_queryset(self, ):
+    @property
+    def conditions_queryset(self, ):
         # if params not valid, return origin querset
-        if not __valid_query_params:
+        if not self.__valid_query_params:
             return self.queryset
         # auto add conditions from fields dict
-        pass
+        for key, val in self.fields:
+            pass
         # return a conditional queryset
         return self.__generate_queryset()
     

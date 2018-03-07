@@ -11,6 +11,7 @@ from rest_framework.decorators import list_route
 
 from api.serializers import User, Income
 from api.serializers import IncomeSerializer
+from api.filter import income_params_queryset
 from core.utils import UserPermission
 
 logger = logging.getLogger('api.income')
@@ -33,8 +34,8 @@ class IncomeViewSet(viewsets.ViewSet):
 
     @income_record_exists
     def list(self, request):
-        queryset = Income.objects.filter(
-            user=request.session.get('userid')).all().order_by('datetime')
+        queryset = Income.objects.filter(user=request.session.get('userid')).all()
+        queryset = income_params_queryset(request.query_params, queryset)
         # page json data
         page = self.pageinator.paginate_queryset(queryset, request)
         serializers = self.serializers(page, many=True)
@@ -87,5 +88,21 @@ class IncomeViewSet(viewsets.ViewSet):
 
     @list_route(methods=['get'])
     def loans(self, request):
-        return Response('building')
-        
+        try:
+            queryset = Income.objects.filter(
+                user_id=request.session.get('userid'),
+                type='2').count()
+            return Response(queryset)
+        except Exception as e:
+            logger.error(traceback.format_exc())
+            return Response(
+                {'status': False, 'msg': str(e)}, status=500)
+
+    @list_route(methods=['get'])
+    def income(self, request):
+        try:
+            queryset = None
+        except Exception as e:
+            logger.error(traceback.format_exc())
+            return Response(
+                {'status': False, 'msg': str(e)}, status=500)

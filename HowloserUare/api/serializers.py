@@ -18,7 +18,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class IncomeSerializer(serializers.ModelSerializer):
-    
+    datetime = serializers.DateTimeField(read_only=True)
+    type = serializers.ChoiceField(Income.income_type)
+
     class Meta:
         model = Income
         exclude = ('user', )

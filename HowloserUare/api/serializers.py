@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from core.models import User
+from deposit.models import Income, Expenses
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -14,3 +15,12 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = ('id',)
+
+
+class IncomeSerializer(serializers.ModelSerializer):
+    datetime = serializers.DateTimeField(read_only=True)
+    type = serializers.ChoiceField(Income.income_type)
+
+    class Meta:
+        model = Income
+        exclude = ('user', )

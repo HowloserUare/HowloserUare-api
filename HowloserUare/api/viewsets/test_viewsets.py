@@ -22,7 +22,7 @@ class TestViewSet(viewsets.ViewSet):
     def delete(self, request, pk):
         return Response({'status': True})
 
-    def retieve(self, request, pk):
+    def retrieve(self, request, pk):
         return Response({'status': True})
 
     def update(self, request, pk):

@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'api',
+    'core',
+    'deposit',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -179,3 +181,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 15
 }
+
+# howloseruare front files
+VIEW_ROOT = os.path.join(BASE_DIR, 'view/')
+VIEW_URI = 'view/'

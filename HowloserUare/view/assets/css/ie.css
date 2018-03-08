@@ -15,7 +15,7 @@
 }
 
 .container-fluid-full {
-	overflow: hidden;
+	/* overflow: hidden; */
 	position: relative;
 	height: 100%;
 }
@@ -24,7 +24,8 @@
 	width: 85.578%;
 	padding: 28px;
 	margin: 0px 0px;
-	margin-left: 14.422% !important;
+	/* margin-left: 14.422% !important; */
+	margin-left: 14.52991452991453% !important;
 }
 	
 #sidebar-left {

@@ -4,6 +4,8 @@ Income viewsets
 import logging
 import traceback
 
+from django.db.models import Sum
+
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
@@ -11,7 +13,7 @@ from rest_framework.decorators import list_route
 
 from api.serializers import User, Income
 from api.serializers import IncomeSerializer
-from api.filter import income_params_queryset
+from api.filter import IncomeFilter
 from core.utils import UserPermission
 
 logger = logging.getLogger('api.income')
@@ -35,7 +37,8 @@ class IncomeViewSet(viewsets.ViewSet):
     @income_record_exists
     def list(self, request):
         queryset = Income.objects.filter(user=request.session.get('userid')).all()
-        queryset = income_params_queryset(request.query_params, queryset)
+        filter_obj = IncomeFilter(request.query_params, queryset)
+        queryset = filter_obj.conditions_queryset()
         # page json data
         page = self.pageinator.paginate_queryset(queryset, request)
         serializers = self.serializers(page, many=True)
@@ -87,21 +90,14 @@ class IncomeViewSet(viewsets.ViewSet):
         return Response(serializers.data)
 
     @list_route(methods=['get'])
-    def loans(self, request):
-        try:
-            queryset = Income.objects.filter(
-                user_id=request.session.get('userid'),
-                type='2').count()
-            return Response(queryset)
-        except Exception as e:
-            logger.error(traceback.format_exc())
-            return Response(
-                {'status': False, 'msg': str(e)}, status=500)
-
-    @list_route(methods=['get'])
     def income(self, request):
         try:
-            queryset = None
+            queryset = Income.objects.filter(user_id=request.session.get('userid'))
+            filter_obj = IncomeFilter(request.query_params, queryset)
+            queryset = filter_obj.conditions_queryset()
+            # return sum amount
+            return Response(
+                {'count': queryset.aggregate(Sum('amount')).get('amount__sum', 0)})
         except Exception as e:
             logger.error(traceback.format_exc())
             return Response(

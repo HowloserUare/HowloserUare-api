@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.conf.urls.static import static
-from django.conf import settings
 from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'api/', include('api.urls')),
-    *static(settings.VIEW_URI, document_root=settings.VIEW_ROOT, show_indexes=True)
+    *static('view/', document_root='view/')
 ]

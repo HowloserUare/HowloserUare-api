@@ -6,3 +6,10 @@ class IncomeFilter(BaseFilter):
         'date': 'datetime__startswith',
         'type': 'type'
     }
+
+
+class ExpensesFilter(BaseFilter):
+    fields = {
+        'date': 'datetime__startswith',
+        'type': 'type',
+    }

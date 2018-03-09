@@ -24,3 +24,10 @@ class IncomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Income
         exclude = ('user', )
+
+
+class ExpensesSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Expenses
+        exclude = ('user', )

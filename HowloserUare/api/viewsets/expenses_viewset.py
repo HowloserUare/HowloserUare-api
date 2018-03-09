@@ -11,9 +11,9 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import list_route
 
-# from api.serializers import User, Income
-# from api.serializers import IncomeSerializer
-# from api.filter import
+from api.serializers import User, Income, Expenses
+from api.serializers import ExpensesSerializer
+from api.filter import ExpensesFilter
 from core.utils import UserPermission
 
 logger = logging.getLogger('api.expenses')

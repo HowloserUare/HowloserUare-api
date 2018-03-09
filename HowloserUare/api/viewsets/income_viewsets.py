@@ -6,7 +6,7 @@ import traceback
 
 from django.db.models import Sum
 
-from rest_framework import viewsets
+from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import list_route
@@ -19,12 +19,12 @@ from core.utils import UserPermission
 logger = logging.getLogger('api.income')
 
 
-class IncomeViewSet(viewsets.ViewSet):
+class IncomeViewSet(ViewSet):
     permission_classes = (UserPermission,)
-    pageinator = PageNumberPagination()
+    paginator = PageNumberPagination()
     serializers = IncomeSerializer
 
-    def income_record_exists(func):
+    def catch_error(func):
         def wrappers(self, *args, **kwargs):
             try:
                 return func(self, *args, **kwargs)
@@ -34,25 +34,26 @@ class IncomeViewSet(viewsets.ViewSet):
                     {'status': False, 'msg': str(e)}, status=500)
         return wrappers
 
-    @income_record_exists
+    @catch_error
     def list(self, request):
-        queryset = Income.objects.filter(user=request.session.get('userid')).all()
+        queryset = Income.objects.filter(
+            user=request.session.get('userid')).all()
         filter_obj = IncomeFilter(request.query_params, queryset)
         queryset = filter_obj.conditions_queryset()
         # page json data
-        page = self.pageinator.paginate_queryset(queryset, request)
+        page = self.paginator.paginate_queryset(queryset, request)
         serializers = self.serializers(page, many=True)
-        return self.pageinator.get_paginated_response(serializers.data)
-    
-    @income_record_exists
+        return self.paginator.get_paginated_response(serializers.data)
+
+    @catch_error
     def create(self, request):
         serializers = self.serializers(data=request.data)
         serializers.is_valid(raise_exception=True)
         income_obj = serializers.save(user_id=request.session.get('userid'))
         # return json data
         return Response(self.serializers(income_obj).data)
-    
-    @income_record_exists
+
+    @catch_error
     def retrieve(self, request, pk):
         queryset = Income.objects.filter(
             user_id=request.session.get('userid'), id=pk).first()
@@ -62,8 +63,8 @@ class IncomeViewSet(viewsets.ViewSet):
         serializers = self.serializers(queryset)
         return Response(serializers.data)
 
-    @income_record_exists
-    def delete(self, request, pk):
+    @catch_error
+    def destroy(self, request, pk):
         queryset = Income.objects.filter(
             user_id=request.session.get('userid'), id=pk).first()
         if not queryset:
@@ -71,8 +72,8 @@ class IncomeViewSet(viewsets.ViewSet):
                 {'status': False, 'msg': 'income record not exists'}, status=404)
         queryset.delete()
         return Response({'status': True}, status=204)
-    
-    @income_record_exists
+
+    @catch_error
     def update(self, request, pk):
         queryset = Income.objects.filter(
             user_id=request.session.get('userid'), id=pk).first()
@@ -92,7 +93,8 @@ class IncomeViewSet(viewsets.ViewSet):
     @list_route(methods=['get'])
     def income(self, request):
         try:
-            queryset = Income.objects.filter(user_id=request.session.get('userid'))
+            queryset = Income.objects.filter(
+                user_id=request.session.get('userid'))
             filter_obj = IncomeFilter(request.query_params, queryset)
             queryset = filter_obj.conditions_queryset()
             # return sum amount
